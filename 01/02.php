@@ -5,6 +5,7 @@ function calc_extra_fuel($in){
 	else
 		return($in + calc_extra_fuel(floor($in / 3) -2));
 }
+
 $lines = file("input.txt", FILE_IGNORE_NEW_LINES);
 $sum = 0;
 
