@@ -6,7 +6,7 @@ $verb = 0;
 $input = $start;
 while($result != 19690720){
 	
-	echo "noun: " . $noun . "	|verb: ". $verb . PHP_EOL;
+	//echo "noun: " . $noun . "	|verb: ". $verb . PHP_EOL;
 	$len = count($input);
 	for($opcode =0; $opcode < $len; $opcode += 4){
 		if($input[$opcode] == 1){
@@ -18,7 +18,8 @@ while($result != 19690720){
 		elseif($input[$opcode] == 99){
 			//echo "done" . PHP_EOL;
 			$result = $input[0];
-			echo "result: " . $result . PHP_EOL;
+			//echo "result: " . $result . PHP_EOL;
+			//print_r($input);
 			break;
 		}
 		else{
