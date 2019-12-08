@@ -15,7 +15,12 @@ class amp{
 			$instruction = str_split($this->program[$this->pointer]); // mode's and opcode
 			$instrSize = count($instruction);
 			$parameters = array(0,0,0);				// location of parameters
-			
+			$opcode = $instruction[$instrSize - 1];
+
+			/* check for halt opcode */
+			if($opcode == 9)
+				return 1;
+
 			/* add leading 0 if needed*/ 
 			for($i = 0; $i<=2; $i++){
 				if($instrSize - 3 - $i >= 0)
@@ -25,16 +30,13 @@ class amp{
 			}		
 			/* check if parameter mode is 1 or 0*/
 			for($i = 0; $i <= 2; $i++){
-				if($parameters[$i] == 0)								// mode = 1
+				if($parameters[$i] == 0 && $this->pointer + 3 - $i < count($this->program))								// mode = 1
 					$parameters[$i] = $this->program[$this->pointer + 3 - $i];
 				else if($parameters[$i] == 1)							// mode = 2
 					$parameters[$i] = $this->pointer + 3 - $i;
-				else
-					echo "error 01 para: " . $parameters[$i] . PHP_EOL;	// invalid parameter mode
 			}
 			
-			/* extract opcode from instruction */
-			$opcode = $instruction[$instrSize - 1];
+			/* extract opcode from instruction */		
 			
 			/* for readability */
 			$P1 = $parameters[2];
@@ -100,12 +102,6 @@ class amp{
 					$this->program[$P3]= 0;
 				$this->pointer += 4;
 			}
-			/* halt */
-			elseif($opcode == 9){
-				return 1;
-				echo "done" . PHP_EOL;
-				break;
-			}
 			/* opcode not found */
 			else{
 				echo "error 02 " . PHP_EOL . $opcode . PHP_EOL;
@@ -116,18 +112,12 @@ class amp{
 }
 
 
-
-echo "done";
-
-
 $max= 0;
 $result=0;
 for($i=0;$i<3125;$i++){
 	
 	$digits = sprintf("%05d",base_convert($i,10,5));
 	if(count(array_count_values(str_split($digits))) == 5){
-		echo $digits . PHP_EOL;
-		/*/*/
 
 		$amp1 = new amp($input,$digits[0]+5);
 		$amp2 = new amp($input,$digits[1]+5);
@@ -144,7 +134,6 @@ for($i=0;$i<3125;$i++){
 		array_push($amp1->inputBuffer,0);
 
 		while(true){
-			echo "run..." . PHP_EOL;
 			$amp1->amp();
 			$amp2->amp();
 			$amp3->amp();
@@ -153,8 +142,6 @@ for($i=0;$i<3125;$i++){
 				break;
 		}
 		$r = $amp1->inputBuffer[count($amp1->inputBuffer)-1];
-/**/
-
 		if($max < $r){
 			$max = $r;
 			$result = $digits;
