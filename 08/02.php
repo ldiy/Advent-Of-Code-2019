@@ -11,7 +11,6 @@ while($pointer < count($line)){
     for($y=0;$y<$height;$y++){
         for($x=0;$x<$width;$x++){
             $imageLayers[$layer][$x][$y] = $line[$pointer++];
-            
         }
     }
     $layer++;
@@ -38,6 +37,5 @@ for($y=0;$y<$height;$y++){
     }
     echo PHP_EOL;
 }
-//print_r($image);
 
 ?>
