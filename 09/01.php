@@ -88,7 +88,7 @@ for($pos =0; $pos < $len; $pos = $pos){
 			$input[$P3]= 0;
 		$pos += 4;
 	}
-	/* output */
+	/* relBase update */
 	elseif($opcode == "09"){
 		$relBase += $input[$P1];
 		$pos += 2;

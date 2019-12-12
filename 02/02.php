@@ -6,20 +6,16 @@ $verb = 0;
 $input = $start;
 while($result != 19690720){
 	
-	//echo "noun: " . $noun . "	|verb: ". $verb . PHP_EOL;
 	$len = count($input);
 	for($opcode =0; $opcode < $len; $opcode += 4){
-		if($input[$opcode] == 1){
+		if($input[$opcode] == 1)
 			$input[$input[$opcode + 3]] = $input[$input[$opcode + 1]] + $input[$input[$opcode + 2]];
-		}
-		elseif($input[$opcode] == 2){
+
+		elseif($input[$opcode] == 2)
 			$input[$input[$opcode + 3]] = $input[$input[$opcode + 1]] * $input[$input[$opcode + 2]];
-		}
+
 		elseif($input[$opcode] == 99){
-			//echo "done" . PHP_EOL;
 			$result = $input[0];
-			//echo "result: " . $result . PHP_EOL;
-			//print_r($input);
 			break;
 		}
 		else{
@@ -29,9 +25,9 @@ while($result != 19690720){
 	}
 	if($result != 19690720){
 		$input = $start;
-		if($noun <99){
+		if($noun <99)
 			$noun++;
-		}else{
+		else{
 			$noun = 0;
 			$verb++;
 		}
