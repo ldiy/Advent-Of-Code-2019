@@ -65,18 +65,6 @@ function bestAsteroid(&$xCoord,&$yCoord, $coordinates){
     }
 }
 
-function checkIfCoordIsBetween($x,$y,$x1,$y1,$x2,$y2){
-    $ok = true;
-    if($x2 == $x1){
-        if((( $y1 < $y  && $y < $y2) || ( $y1 > $y  && $y > $y2) ) && $x == $x1)
-            $ok = false;                     
-    }
-    elseif($y-$y1 == (($y2-$y1)/($x2-$x1))*($x-$x1)){
-        if(( $y1 < $y  && $y < $y2) || ( $y1 > $y  && $y > $y2) || ( $x1 > $x  && $x > $x2) || ( $x1 < $x  && $x < $x2))
-            $ok = false;
-    }
-    return(!$ok); 
-}
 /* Calc distance between 2 points */
 function calcDistance($x1,$y1,$x2,$y2){
     return(sqrt(pow(($x2-$x1),2) + pow(($y2-$y1),2)));
