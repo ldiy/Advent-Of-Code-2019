@@ -36,7 +36,6 @@ foreach($lines as $line)
 
 function oreNeeded($name, $amount, &$reactions, &$buffer)
 {
-    //echo $amount. " ". $name . PHP_EOL;
     if($name == "ORE")
         return($amount);
 
@@ -61,5 +60,4 @@ function oreNeeded($name, $amount, &$reactions, &$buffer)
 $buffer = array();
 echo oreNeeded("FUEL",1,$reactions,$buffer);
 
-//print_r($buffer);
 ?>
