@@ -144,7 +144,7 @@ for($y=20;;$y++){
         if(check($x,$y)){
             if($x >= 100){
                 if(check($x-99,$y) && check($x,$y+99) && check($x-99,$y+99)){
-                    echo "x: " . $x-99 . " | y: " . $y . PHP_EOL;
+                    echo "x: " . ($x - 99) . " | y: " . $y . PHP_EOL;
                     $go = false;
                     break;
                 }
